@@ -14,15 +14,15 @@
           label="Load Data Countries | States | Cities"
           @click="loadDataFromJsonFile"
         >
-          <q-tooltip class="bg-accent">
+          <q-tooltip class="bg-primary">
             Load data of countries, states and cities from a local json file
           </q-tooltip>
         </q-btn>
       </div>
     </div>
 
-    <div class="row q-col-gutter-md">
-      <div class="col-md-1 col-lg-4">
+    <div class="row q-col-gutter-lg">
+      <div class="col-xs-12 col-lg-4">
         <span class="text-h6">Countries</span>
         <q-table
           hide-header
@@ -34,6 +34,8 @@
           <template v-slot:top-right>
             <q-input
               dense
+              clearable
+              autofocus
               debounce="300"
               v-model="filterCountry"
               placeholder="Filter"
@@ -51,7 +53,9 @@
               </q-td>
               <q-td key="actions" :props="props">
                 <q-btn flat round icon="delete_forever">
-                  <q-tooltip class="bg-accent"> Delete country </q-tooltip>
+                  <q-tooltip class="bg-primary gt-lg">
+                    Delete country
+                  </q-tooltip>
                 </q-btn>
 
                 <q-btn
@@ -60,7 +64,7 @@
                   icon="arrow_circle_right"
                   @click="statesFindByCountry(props.row.id, props.row)"
                 >
-                  <q-tooltip class="bg-accent">
+                  <q-tooltip class="bg-primary gt-lg">
                     List states of this country
                   </q-tooltip>
                 </q-btn>
@@ -70,7 +74,7 @@
         </q-table>
       </div>
 
-      <div class="col-md-1 col-lg-4" v-if="states.length > 0">
+      <div class="col-xs-12 col-lg-4" v-if="states.length > 0">
         <span class="text-h6">States of {{ countryRowSelected }}</span>
         <q-table
           hide-header
@@ -82,6 +86,7 @@
           <template v-slot:top-right>
             <q-input
               dense
+              clearable
               debounce="300"
               v-model="filterState"
               placeholder="Filter"
@@ -99,7 +104,7 @@
               </q-td>
               <q-td key="actions" :props="props">
                 <q-btn flat round icon="delete_forever">
-                  <q-tooltip class="bg-accent"> Delete state </q-tooltip>
+                  <q-tooltip class="bg-primary gt-lg"> Delete state </q-tooltip>
                 </q-btn>
 
                 <q-btn
@@ -108,7 +113,7 @@
                   icon="arrow_circle_right"
                   @click="citiesFindByState(props.row.id, props.row)"
                 >
-                  <q-tooltip class="bg-accent">
+                  <q-tooltip class="bg-primary gt-lg">
                     List cities of this state
                   </q-tooltip>
                 </q-btn>
@@ -118,7 +123,7 @@
         </q-table>
       </div>
 
-      <div class="col-md-1 col-lg-4" v-if="cities.length > 0">
+      <div class="col-xs-12 col-lg-4" v-if="cities.length > 0">
         <span class="text-h6">Cities of {{ stateRowSelected }}</span>
         <q-table
           hide-header
@@ -130,6 +135,7 @@
           <template v-slot:top-right>
             <q-input
               dense
+              clearable
               debounce="300"
               v-model="filterCity"
               placeholder="Filter"
@@ -152,7 +158,7 @@
                   icon="delete_forever"
                   @click="citiesDelete(props.row.id, props.row.state.id)"
                 >
-                  <q-tooltip class="bg-accent"> Delete city </q-tooltip>
+                  <q-tooltip class="bg-primary gt-lg"> Delete city </q-tooltip>
                 </q-btn>
               </q-td>
             </q-tr>

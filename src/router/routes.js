@@ -4,8 +4,8 @@ const routes = [
     component: () => import("layouts/MainLayout.vue"),
     children: [
       {
-        path: "loads",
-        name: "loads",
+        path: "dashboard",
+        name: "dashboard",
         component: () => import("pages/load/LoadPage.vue"),
       },
       {
@@ -13,7 +13,11 @@ const routes = [
         name: "countries",
         component: () => import("pages/country/CountryPage.vue"),
       },
-      { path: "", component: () => import("pages/IndexPage.vue") },
+      {
+        path: "",
+        name: "home",
+        component: () => import("pages/IndexPage.vue"),
+      },
     ],
   },
 

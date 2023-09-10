@@ -13,7 +13,11 @@
 
         <q-toolbar-title> Demo-Frontend App </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <!-- <div>Quasar v{{ $q.version }}</div> -->
+
+        <div>
+          <q-toggle v-model="darkMode" color="secondary" label="Dark page" />
+        </div>
       </q-toolbar>
     </q-header>
 
@@ -35,44 +39,39 @@
   </q-layout>
 </template>
 
-<script>
-import { defineComponent, ref } from "vue";
+<script setup>
+import { ref, watch } from "vue";
 import EssentialLink from "components/EssentialLink.vue";
+import { useQuasar } from "quasar";
+
+const $q = useQuasar();
+const darkMode = ref($q.dark.isActive);
 
 const linksList = [
   {
     title: "Dashboard",
-    caption: "data load for tests",
+    caption: "A panel with data load for tests",
     icon: "dashboard",
-    route: "/loads",
-    routeName: "loads",
+    route: "/dashboard",
+    routeName: "dashboard",
   },
   {
     title: "Countries",
-    caption: "countries register",
+    caption: "Registration and configuration",
     icon: "flag_circle",
     route: "/countries",
     routeName: "countries",
   },
 ];
 
-export default defineComponent({
-  name: "MainLayout",
+const leftDrawerOpen = ref(false);
+const essentialLinks = linksList;
 
-  components: {
-    EssentialLink,
-  },
+function toggleLeftDrawer() {
+  leftDrawerOpen.value = !leftDrawerOpen.value;
+}
 
-  setup() {
-    const leftDrawerOpen = ref(false);
-
-    return {
-      essentialLinks: linksList,
-      leftDrawerOpen,
-      toggleLeftDrawer() {
-        leftDrawerOpen.value = !leftDrawerOpen.value;
-      },
-    };
-  },
+watch(darkMode, (newValue) => {
+  $q.dark.set(newValue);
 });
 </script>
