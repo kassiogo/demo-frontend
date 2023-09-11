@@ -5,8 +5,8 @@
       <q-breadcrumbs-el label="Dashboard" />
     </q-breadcrumbs>
 
-    <div class="row q-pb-lg q-col-gutter-md" v-if="countries.length == 0">
-      <div class="col-md-1 col-lg-4">
+    <div class="row q-pb-lg" v-if="countries.length == 0">
+      <div class="col text-center">
         <q-btn
           :disabled="loadindDataFromJsonFile"
           color="primary"
@@ -21,7 +21,12 @@
       </div>
     </div>
 
-    <div class="row q-col-gutter-lg">
+    <q-inner-loading :showing="loadingCountries">
+      <q-spinner-gears size="50px" color="primary" />
+      <span class="text-primary q-pa-sm">Loading data. Please wait...</span>
+    </q-inner-loading>
+
+    <div class="row q-col-gutter-lg" v-if="countries.length > 0">
       <div class="col-xs-12 col-lg-4">
         <span class="text-h6">Countries</span>
         <q-table
@@ -30,6 +35,7 @@
           :columns="columnsCountries"
           row-key="id"
           :filter="filterCountry"
+          :loading="loadingCountries"
         >
           <template v-slot:top-right>
             <q-input
@@ -182,6 +188,7 @@ const cities = ref([]);
 const countryRowSelected = ref("");
 const stateRowSelected = ref("");
 const loadindDataFromJsonFile = ref(false);
+const loadingCountries = ref(false);
 
 const columnsCountries = [
   {
@@ -201,8 +208,10 @@ const columnsCountries = [
 
 function loadDataFromJsonFile() {
   loadindDataFromJsonFile.value = true;
+  loadingCountries.value = true;
   beServices.saveFromJsonFile().then((resp) => {
     countries.value = resp;
+    loadingCountries.value = false;
   });
 }
 
