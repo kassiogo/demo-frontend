@@ -10,6 +10,12 @@ yarn
 npm install
 ```
 
+### Start the backend API in development mode
+See the demo-api project on https://github.com/kassiogo/demo-api.
+```bash
+git clone https://github.com/kassiogo/demo-api.git
+```
+
 ### Start the app in development mode (hot-code reloading, error reporting, etc.)
 
 ```bash
