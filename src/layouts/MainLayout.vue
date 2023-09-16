@@ -13,8 +13,6 @@
 
         <q-toolbar-title> Demo-Frontend App </q-toolbar-title>
 
-        <!-- <div>Quasar v{{ $q.version }}</div> -->
-
         <div>
           <q-toggle v-model="darkMode" color="secondary" label="Dark page" />
         </div>

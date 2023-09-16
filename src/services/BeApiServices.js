@@ -37,9 +37,25 @@ class BEApiServices {
       });
   }
 
+  countriesDelete(uuidCode) {
+    return this.axios
+      .delete(`${resources.resourceCountries}/${uuidCode}`)
+      .then((resp) => {
+        return resp.data || [];
+      });
+  }
+
   statesFindSCities(id) {
     return this.axios
       .get(`${resources.resourceStates}/${id}/cities`)
+      .then((resp) => {
+        return resp.data || [];
+      });
+  }
+
+  statesDelete(id) {
+    return this.axios
+      .delete(`${resources.resourceStates}/${id}`)
       .then((resp) => {
         return resp.data || [];
       });
