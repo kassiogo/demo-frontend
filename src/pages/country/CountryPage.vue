@@ -1,8 +1,8 @@
 <template>
   <q-page padding>
     <q-breadcrumbs>
-      <q-breadcrumbs-el label="Home" />
       <q-breadcrumbs-el label="Country" />
+      <q-breadcrumbs-el label="Register" />
     </q-breadcrumbs>
 
     <div class="row q-pt-lg">

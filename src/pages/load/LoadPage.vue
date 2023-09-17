@@ -1,8 +1,8 @@
 <template>
   <q-page padding>
     <q-breadcrumbs class="q-pb-lg">
-      <q-breadcrumbs-el label="Home" />
       <q-breadcrumbs-el label="Dashboard" />
+      <q-breadcrumbs-el label="Basics actions" />
     </q-breadcrumbs>
 
     <div class="row q-pb-lg" v-if="countries.length == 0">
@@ -36,6 +36,7 @@
           row-key="id"
           :filter="filterCountry"
           :loading="loadingCountries"
+          :pagination="myInitialPagination"
         >
           <template v-slot:top-right>
             <q-input
@@ -93,6 +94,7 @@
           :columns="columns"
           row-key="id"
           :filter="filterState"
+          :pagination="myInitialPagination"
         >
           <template v-slot:top-right>
             <q-input
@@ -147,6 +149,7 @@
           :columns="columns"
           row-key="id"
           :filter="filterCity"
+          :pagination="myInitialPagination"
         >
           <template v-slot:top-right>
             <q-input
@@ -200,6 +203,7 @@ const cities = ref([]); // The array list object that represents the cities (JSO
 const countrySelectedName = ref(""); // The variable used to store the name of the selected country.
 const stateSelectedName = ref(""); // The variable used to store the name of the selected state.
 const loadindDataFromJsonFile = ref(false); // The variable used to control whether the initial data was loaded.
+const loadingCountries = ref(false);
 
 // Columns of tables Country, State and Cities (all of the tables on the page use the same object "columns".
 const columns = [
@@ -217,6 +221,10 @@ const columns = [
     field: "",
   },
 ];
+
+const myInitialPagination = {
+  rowsPerPage: 10,
+};
 
 /**
  * A function used for the initial data load of countries, states, and cities.
