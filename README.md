@@ -16,7 +16,7 @@ See the demo-api project on https://github.com/kassiogo/demo-api.
 git clone https://github.com/kassiogo/demo-api.git
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+### Start the demo-frontend app in development mode (hot-code reloading, error reporting, etc.)
 
 ```bash
 npm run dev
